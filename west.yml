@@ -22,6 +22,9 @@ manifest:
     - name: upstream
       url-base: https://github.com/zephyrproject-rtos
 
+    - name: ablymed
+      url-base: git@github.com:ablymed
+
   #
   # Please add items below based on alphabetical order
   projects:
@@ -99,8 +102,9 @@ manifest:
     - name: net-tools
       revision: f49bd1354616fae4093bf36e5eaee43c51a55127
       path: tools/net-tools
-    - name: hal_nxp
-      revision: 0d11138724959e1162777d9206f841ccdf64348e
+    - name: lyng-senbrd-hal-nxp
+      remote: ablymed
+      revision: ably/lyng
       path: modules/hal/nxp
     - name: open-amp
       revision: 6010f0523cbc75f551d9256cf782f173177acdef
