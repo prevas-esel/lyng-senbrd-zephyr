@@ -55,6 +55,12 @@ config USB_DEVICE_NETWORK_ECM_MAC
 	  the Host's Operating System. Use RFC 7042 Documentation values as
 	  default MAC.
 
+config USB_DEVICE_NETWORK_RANDOM_MAC
+	bool "USB ECM Random MAC"
+	default n
+	help
+	  Assign a random mac address to the usb network interface.
+
 endif # USB_DEVICE_NETWORK_ECM
 
 config CDC_EEM_BULK_EP_MPS

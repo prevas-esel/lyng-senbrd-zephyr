@@ -22,6 +22,8 @@ LOG_MODULE_REGISTER(usb_ecm);
 
 #include "netusb.h"
 
+#include <random/rand32.h>
+
 #define USB_CDC_ECM_REQ_TYPE		0x21
 #define USB_CDC_SET_ETH_PKT_FILTER	0x43
 
@@ -409,7 +411,22 @@ USBD_STRING_DESCR_DEFINE(primary) struct usb_cdc_ecm_mac_descr utf16le_mac = {
 static void ecm_interface_config(struct usb_desc_header *head,
 				 uint8_t bInterfaceNumber)
 {
+#if CONFIG_USB_DEVICE_NETWORK_RANDOM_MAC
+	char ascii[16] = "0123456789ABCDEF";
+	uint32_t entropy;
+
+	entropy = sys_rand32_get();
+	utf16le_mac.bString[1] |= 2;
+
+	utf16le_mac.bString[6] = ascii[((entropy >> 20) & 0x0F)];
+	utf16le_mac.bString[7] = ascii[((entropy >> 16) & 0x0F)];
+	utf16le_mac.bString[8] = ascii[((entropy >> 12) & 0x0F)];
+	utf16le_mac.bString[9] = ascii[((entropy >> 8) & 0x0F)];
+	utf16le_mac.bString[10] = ascii[((entropy >> 4) & 0x0F)];
+	utf16le_mac.bString[11] = ascii[((entropy >> 0) & 0x0F)];
+#endif
 	int idx = usb_get_str_descriptor_idx(&utf16le_mac);
+
 
 	ARG_UNUSED(head);
 
