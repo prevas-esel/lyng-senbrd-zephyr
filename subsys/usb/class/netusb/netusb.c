@@ -14,6 +14,7 @@ LOG_MODULE_REGISTER(usb_net);
 
 #include <net/ethernet.h>
 #include <net_private.h>
+#include <net_mac.h>
 
 #include <usb_device.h>
 #include <usb_common.h>
@@ -125,7 +126,9 @@ bool netusb_enabled(void)
 
 static void netusb_init(struct net_if *iface)
 {
-	static uint8_t mac[6] = { 0x00, 0x00, 0x5E, 0x00, 0x53, 0x00 };
+	static uint8_t mac[6] = { 0x00, 0x00, 0x5E, 0x00, 0x53, 0xFE };
+
+	net_mac_get(mac);
 
 	LOG_DBG("netusb device initialization");
 
