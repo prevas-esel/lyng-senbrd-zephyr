@@ -776,6 +776,7 @@ static void dfu_work_handler(struct k_work *item)
 		}
 #endif
 	case dfuDNLOAD_IDLE:
+		k_msleep(INTERMITTENT_CHECK_DELAY);
 		dfu_flash_write(dfu_data_worker.buf,
 				dfu_data_worker.worker_len);
 		break;
