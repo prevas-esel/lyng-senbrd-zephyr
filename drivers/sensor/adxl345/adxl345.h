@@ -27,6 +27,7 @@
 #define ADXL345_RANGE_4G           0x1
 #define ADXL345_RANGE_8G           0x2
 #define ADXL345_RANGE_16G          0x3
+#define ADXL345_RATE_313HZ         0x5
 #define ADXL345_RATE_25HZ          0x8
 #define ADXL345_ENABLE_MEASURE_BIT (1 << 3)
 #define ADXL345_FIFO_STREAM_MODE   (1 << 7)

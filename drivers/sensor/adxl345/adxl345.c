@@ -38,7 +38,6 @@ static int adxl345_read_sample(const struct device *dev,
 	raw_x = axis_data[0] | (axis_data[1] << 8);
 	raw_y = axis_data[2] | (axis_data[3] << 8);
 	raw_z = axis_data[4] | (axis_data[5] << 8);
-
 	sample->x = raw_x;
 	sample->y = raw_y;
 	sample->z = raw_z;
@@ -167,7 +166,7 @@ static int adxl345_init(const struct device *dev)
 	}
 
 	rc = i2c_reg_write_byte(data->i2c_master, data->i2c_addr,
-		ADXL345_RATE_REG, ADXL345_RATE_25HZ);
+		ADXL345_RATE_REG, ADXL345_RATE_313HZ);
 	if (rc < 0) {
 		LOG_ERR("Rate setting failed\n");
 		return -EIO;
