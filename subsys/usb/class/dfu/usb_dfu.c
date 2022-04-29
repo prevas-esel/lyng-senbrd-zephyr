@@ -64,7 +64,7 @@ LOG_MODULE_REGISTER(usb_dfu);
 #define FIRMWARE_IMAGE_1_LABEL FLASH_AREA_LABEL_STR(image_1)
 #endif
 
-#define INTERMITTENT_CHECK_DELAY	50
+#define INTERMITTENT_CHECK_DELAY	100
 
 static struct k_poll_event dfu_event;
 static struct k_poll_signal dfu_signal;
