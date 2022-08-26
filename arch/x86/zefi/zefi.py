@@ -106,7 +106,10 @@ def build_elf(elf_file):
     #  + We need pic to enforce that the linker adds no relocations
     #  + UEFI can take interrupts on our stack, so no red zone
     #  + UEFI API assumes 16-bit wchar_t
-    cmd = [args.compiler, "-shared", "-Wall", "-Werror", "-I.",
+
+    #  Pass --sysroot path for cross compilation
+    sysrootarg = "--sysroot=" + args.sysroot
+    cmd = [args.compiler, "-shared", "-Wall", "-Werror", "-I.", sysrootarg,
         "-fno-stack-protector", "-fpic", "-mno-red-zone", "-fshort-wchar",
         "-Wl,-nostdlib", "-T", ldscript, "-o", "zefi.elf", cfile]
     verbose(" ".join(cmd))
@@ -145,6 +148,7 @@ def parse_args():
     parser.add_argument("-o", "--objcopy", required=True, help="objcopy to be used")
     parser.add_argument("-f", "--elf-file", required=True, help="Input file")
     parser.add_argument("-v", "--verbose", action="store_true", help="Verbose output")
+    parser.add_argument("-s", "--sysroot", required=True, help="Cross compilation --sysroot=path")
 
     return parser.parse_args()
 

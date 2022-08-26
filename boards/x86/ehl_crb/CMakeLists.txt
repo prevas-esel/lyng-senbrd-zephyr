@@ -5,6 +5,7 @@ set_property(GLOBAL APPEND PROPERTY extra_post_build_commands
   -c ${CMAKE_C_COMPILER}
   -o ${CMAKE_OBJCOPY}
   -f ${PROJECT_BINARY_DIR}/${CONFIG_KERNEL_BIN_NAME}.elf
+  -s ${SYSROOT_DIR}
   $<$<BOOL:${CMAKE_VERBOSE_MAKEFILE}>:--verbose>
   WORKING_DIRECTORY ${PROJECT_BINARY_DIR}
 )

@@ -68,13 +68,6 @@ execute_process(
   OUTPUT_STRIP_TRAILING_WHITESPACE
   )
 
-assert_exists(LIBGCC_FILE_NAME)
-
-get_filename_component(LIBGCC_DIR ${LIBGCC_FILE_NAME} DIRECTORY)
-
-assert_exists(LIBGCC_DIR)
-
-LIST(APPEND LIB_INCLUDE_DIR "-L\"${LIBGCC_DIR}\"")
 LIST(APPEND TOOLCHAIN_LIBS gcc)
 
 if(SYSROOT_DIR)
