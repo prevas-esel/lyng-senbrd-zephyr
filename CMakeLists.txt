@@ -41,6 +41,10 @@ endif()
 zephyr_check_compiler_flag(C "" toolchain_is_ok)
 assert(toolchain_is_ok "The toolchain is unable to build a dummy C file. See CMakeError.log.")
 
+# Disable test build
+set(CMAKE_C_COMPILER_WORKS 1)
+set(CMAKE_CXX_COMPILER_WORKS 1)
+
 # In some cases the "final" things are not used at all and "_prebuilt"
 # is the last station. See "logical_target_for_zephyr_elf" below for
 # details.
